@@ -20,6 +20,7 @@ def index():
                 {"role": "system", "content": "Du bist ein hilfreicher KI-Assistent für Unternehmen."},
                 {"role": "user", "content": user_input}
             ]
+            
         )
         response_text = response.choices[0].message.content
     return render_template("index.html", response=response_text)
