@@ -24,6 +24,11 @@ def index():
         )
         response_text = response.choices[0].message.content
     return render_template("index.html", response=response_text)
+@app.route("/landing")
+def landing():
+    return render_template("landing.html")
 
+# Muss ganz unten bleiben
 if __name__ == "__main__":
     app.run(debug=True)
+
