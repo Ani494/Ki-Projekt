@@ -1,23 +1,57 @@
-<!DOCTYPE html>
+<<!DOCTYPE html>
 <html lang="de">
 <head>
-    <meta charset="UTF-8">
-    <title>Demo für Firmen-Webseite</title>
-<link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+  <meta charset="UTF-8">
+  <title>Dreier KI-Assistent</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
 </head>
 <body>
-    <h1>Willkommen bei Ihrem KI-Assistenten</h1>
-    <p>Ich beantworte automatisch Kundenfragen - 24/7</p>
-    
-    <form method="post">
-        <label for="user_input">Frage eingeben:</label><br>
-        <input type="text" id="user_input" name="user_input" required><br><br>
-        <button type="submit">Antwort bekommen</button>
-    </form>
 
-    {% if response %}
-        <h2>Antwort:</h2>
-        <p>{{ response }}</p>
-    {% endif %}
+  <!-- Dreier-Logo -->
+  <div class="logo-container">
+    <img src="{{ url_for('static', filename='dreier-logo.webp') }}" alt="Dreier Logo" class="dreier-logo">
+  </div>
+
+  <!-- Begrüßung -->
+  <h1>Willkommen beim KI-Assistenten der Firma Dreier</h1>
+  <p>Ich beantworte automatisch Ihre Kundenfragen – 24/7</p>
+
+  <!-- Formular -->
+  <form method="post">
+    <label for="user_input">Frage eingeben:</label><br>
+    <input type="text" id="user_input" name="user_input" required><br><br>
+    <button type="submit">Antwort bekommen</button>
+  </form>
+
+  <!-- Antwort -->
+  {% if response %}
+    <div id="response">
+      <h2>Antwort:</h2>
+      <p>{{ response }}</p>
+    </div>
+  {% endif %}
+
+  <!-- Roboter -->
+  <div class="robot-container">
+    <div class="speech-bubble" id="robotBubble">...</div>
+    <img src="{{ url_for('static', filename='robot.png') }}" alt="Roboter" class="robot">
+  </div>
+
+  <!-- Skript für Sprechblase -->
+  <script>
+    function showThinkingBubble() {
+      document.getElementById("robotBubble").style.display = "block";
+      document.getElementById("robotBubble").innerText = "Denke nach...";
+    }
+
+    function hideThinkingBubble() {
+      document.getElementById("robotBubble").style.display = "none";
+    }
+
+    document.querySelector("form").addEventListener("submit", function () {
+      showThinkingBubble();
+    });
+  </script>
+
 </body>
 </html>
